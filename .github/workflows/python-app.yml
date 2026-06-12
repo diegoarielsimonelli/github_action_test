@@ -2,7 +2,7 @@ name: Python application
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
 
 permissions:
   contents: read
@@ -12,20 +12,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v5
-    
-    - name: Set up Python 3.14
-      uses: actions/setup-python@v5
-      with:
-        python-version: "3.14.3"
-        
-    - name: Install dependencies
-      run:  pip install -r src/requirements.txt
-        
-    - name: Lint code with Ruff
-      run: ruff check src
-      
-    - name: Test with pytest
-      working-directory: src
-      run: python -m pytest test.py
+      - uses: actions/checkout@v5
 
+      - name: Set up Python 3.14
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.14.3"
+
+      - name: Install dependencies
+        run: pip install -r src/requirements.txt
+
+      - name: Lint code with Ruff
+        run: ruff check src
+
+      - name: Test with pytest
+        working-directory: src
+        run: python -m pytest src/test.py
